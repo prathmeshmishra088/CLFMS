@@ -1,6 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const foundItemRoutes = require("./routes/foundItemRoutes");
+const claimRoutes = require("./routes/claimRoutes");
 
 dotenv.config();
 
@@ -12,6 +14,9 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("Server running");
 });
+
+app.use("/api/found", foundItemRoutes);
+app.use("/api/claim", claimRoutes);
 
 const PORT = process.env.PORT || 5000;
 
